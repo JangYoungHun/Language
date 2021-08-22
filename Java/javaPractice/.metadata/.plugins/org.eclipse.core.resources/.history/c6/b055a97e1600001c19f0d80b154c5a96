@@ -1,0 +1,76 @@
+package Programmers;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+//https://programmers.co.kr/learn/courses/30/lessons/17677
+
+public class Number_17677 {
+
+	public static void main(String[] args) {
+		String str1 = "aa1+aa2";
+		String str2 = "AAAA12";
+		 solution(str1, str2);
+	}
+    public static int solution(String str1, String str2) {
+    	
+    	str1 = str1.toLowerCase();
+    	str2 = str2.toLowerCase();
+    	
+        String pattern = "([a-zA-Z]+)";
+        Pattern p = Pattern.compile(pattern);
+        Matcher m1 = p.matcher(str1);
+        Matcher m2 = p.matcher(str2);
+        
+        StringBuilder sb1 = new StringBuilder();    
+        StringBuilder sb2 = new StringBuilder();
+        while(m1.find()) {
+        	sb1.append(m1.group(0));
+        }
+        while(m2.find()) {
+        	sb2.append(m2.group(0));
+        }
+        
+        HashMap<String, Integer> h1 = new HashMap<String, Integer>();  
+        HashMap<String, Integer> h2 = new HashMap<String, Integer>();
+         
+        
+         for(int i=0; i<sb1.length()-1;i++) {
+        	 String str = sb1.substring(i,i+2);
+        	 if(h1.get(str) == null) {
+        		 h1.put(str, 1);
+        		 continue;
+        	 }
+        	 h1.put(str, h1.get(str)+1);
+         }
+         for(int i=0; i<sb2.length()-1;i++) {
+        	 String str = sb1.substring(i,i+2);
+        	 if(h2.get(str) == null) {
+        		 h2.put(str, 1);
+        		 continue;
+        	 }
+        	 h2.put(str, h2.get(str)+1);
+         }
+        
+         
+         //교집합
+         float num1 = 0;
+         for(String key : h1.keySet()) {
+        	 try {
+        	 Math.min(h1.get(key), h2.get(key));
+        	 }
+        	 catch(Exception e){
+        		 continue;
+        	 }
+         }
+         
+         //합집합
+      
+
+
+        return 0;
+    }
+}

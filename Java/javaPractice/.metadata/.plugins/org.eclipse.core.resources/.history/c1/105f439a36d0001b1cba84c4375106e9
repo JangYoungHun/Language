@@ -1,0 +1,57 @@
+package codingTest;
+
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+
+public class Number_11725 {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int N = sc.nextInt();
+
+		Node nodes[] = new Node[N+1];
+		for(int i=0; i<N+1; i++) {
+			nodes[i] = new Node(i);	
+		}
+		
+		for(int i=0; i<N-1; i++) {
+			int index1 = sc.nextInt();
+			int index2 = sc.nextInt();
+			nodes[index1].list.add(nodes[index2]);	
+			nodes[index2].list.add(nodes[index1]);	
+		}
+		
+		Queue<Node> q = new LinkedList<>();
+		
+		q.add(nodes[1]);
+		
+		while(!q.isEmpty()) {
+			Node topNode = q.poll();
+			for(Node n : topNode.list ) {
+				n.parent = topNode;
+				q.add(n);
+			}
+		}
+		
+		
+		for(Node n : nodes) {
+			System.out.println(n.parent.data);
+		}
+		
+		
+		
+	}
+	
+	static class Node{
+		int data;
+		Node parent;
+		LinkedList<Node> list ;
+		Node(int data){
+			this.data = data;
+			list = new LinkedList<>();
+		}
+		
+	}
+
+}

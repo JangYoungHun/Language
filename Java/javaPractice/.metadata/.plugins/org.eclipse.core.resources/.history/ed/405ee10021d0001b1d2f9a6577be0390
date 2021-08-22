@@ -1,0 +1,105 @@
+package codingTest;
+
+import java.util.Scanner;
+//https://www.acmicpc.net/problem/17609
+// 미해결 반례 못찾음
+public class Number_17609 {
+	public static void main(String args[]) {
+	Scanner sc= new Scanner(System.in);
+	int N = sc.nextInt();
+	StringBuilder sb; 
+	
+	for(int i=0; i<N; i++) {	
+		
+		 sb = new StringBuilder(); 
+		 sb.append(sc.next());
+		System.out.println( palindrome(sb, 0, sb.length()-1, 0) );
+		 
+	}
+	
+	
+	
+	
+	
+//	for(int i=0; i<N; i++) {
+//		
+//		 sb = new StringBuilder(); 
+//		 sb.append(sc.next());
+//		 
+//		 int pr=0;
+//		 int pl = sb.length()-1;
+//		 int cnt =0;
+//
+//		
+//		 while(pr<=pl) {
+//							 
+//			 if(sb.charAt(pr) == sb.charAt(pl)) {
+//				 pr++;
+//				 pl--;
+//			 }
+//			 else {		 
+//				 if(cnt ==1)
+//					 break;
+//				 
+//				 cnt++;
+//				 
+//				 if(sb.charAt(pr+1) == sb.charAt(pl))
+//					 pr++;
+//				 else if(sb.charAt(pr) == sb.charAt(pl-1))
+//					 pl--;
+//				 else
+//					 break;
+//				
+//			 }			 
+//		 }
+//	
+//		 if(pr > pl) {
+//			 if(cnt ==0)
+//				 System.out.println(0);
+//			 if(cnt ==1)
+//				 System.out.println(1);		 
+//		 }
+//		 else
+//			 System.out.println(2);		 
+//
+//	}
+	
+	}
+	
+	public static int palindrome(StringBuilder sb, int pl, int pr, int cnt) {
+		
+		 while(pr<=pl) {					 
+				if(sb.charAt(pr) == sb.charAt(pl)) {
+				 pr++;
+				 pl--;
+				}
+				
+				else {		 
+					 if(cnt ==1)
+						 return 2;
+					 
+					 cnt++;
+					 
+					 int num1;
+					 int num2;
+					if(sb.charAt(pr+1) == sb.charAt(pl)) 
+						num1 = palindrome(sb, pl++, pr, cnt+1); 
+					 else if(sb.charAt(pr) == sb.charAt(pl-1))
+						 num2 =palindrome(sb, pl, pr--, cnt+1); 
+					 else
+						 break;
+					
+					}			 
+				}
+				
+				if(pl > pr) {
+				if(cnt ==0)
+				return 0;
+				if(cnt ==1)
+					return 1;	 
+				}
+				else
+					return 2;	 			
+				}
+
+}

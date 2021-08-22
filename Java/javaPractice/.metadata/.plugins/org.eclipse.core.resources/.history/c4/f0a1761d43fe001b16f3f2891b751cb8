@@ -1,0 +1,59 @@
+package Programmers;
+
+//https://programmers.co.kr/learn/courses/30/lessons/77485
+
+public class Number_77485 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+	
+    public static  int[] solution(int rows, int columns, int[][] queries) {
+        int[] answer = {};
+        int[][] map = new int [rows][columns];
+        int num =1;
+        for(int i =0; i<rows; i++) {
+        	for(int j=0; j<columns; j++) {
+        		map[i][j] = num++;
+        	}
+        }
+        
+        for(int[] q : queries) {
+        	int[] newNum = new int[ rows*columns - (rows-2)*(columns-2)];
+        	int x1 = q[0]-1;
+        	int y1 = q[1]-1;
+        	int x2 = q[2]-1;
+        	int y2 = q[3]-1;
+        	
+        	int index =0;
+        	
+        	for(int i =y1; i<=y2;i++) {
+        		newNum[index++] = map[x1][i];
+        	}
+        	for(int i =x1+1; i<=x2;i++) {
+        		newNum[index++] = map[i][y2];
+        	}
+        	for(int i =y2-1; i>=y1;i--) {
+        		newNum[index++] = map[x1][i];
+        	}
+        	for(int i =x2-1; i>=x1;i--) {
+        		newNum[index++] = map[x1][i];
+        	}
+        }
+        
+        
+        
+        
+        
+        return answer;
+    }
+    
+    
+    void swap(int[][] map, int x1,int x2, int y1, int y2){  	
+    	int temp = map[x1][y1];
+    	map[x1][y1] = map[x2][y2];
+    	map[x2][y2] = temp;   	
+    }
+    
+}

@@ -1,0 +1,48 @@
+package codingTest;
+
+import java.util.Scanner;
+import java.util.Stack;
+
+public class Number_2606 {
+
+	public static void main(String[] args) {
+		Stack<Integer> stack = new Stack<Integer>();
+		int cnt=0;
+		
+		Scanner scanner = new Scanner(System.in);
+		int N = scanner.nextInt();
+		int bridgeNum =  scanner.nextInt();
+		int visited[] = new int[N];
+		int bridge[][] = new int[N][N];		
+		for(int i =0; i<bridgeNum; i++) {
+			int index1 = scanner.nextInt()-1;
+			int index2 = scanner.nextInt()-1;
+			bridge[index1][index2]= 1;
+			bridge[index2][index1]= 1;
+		}
+		
+		stack.push(0);
+		
+		
+		while(!stack.isEmpty()) {
+			
+			int pop = stack.pop();
+			visited[pop] = 1;
+			
+			for(int i =0; i<bridgeNum; i++) {
+				if(visited[i] != 1 && bridge[pop][i] == 1) {
+					stack.push(i);
+					cnt ++;
+				}	
+			}
+			
+		}
+		
+		
+		System.out.println();
+		
+		
+		
+	}
+
+}

@@ -1,0 +1,46 @@
+package codingTest.Programmers;
+
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
+
+public class Number_42586 {
+
+	public static void main(String[] args) {
+        int[] answer = {};
+        int[] progresses = {93, 30, 55}; 
+        int[] speeds = {1, 30, 5};
+        Queue<Integer> q = new LinkedList<Integer>();
+        
+        for(int i =0; i< progresses.length; i++){
+            q.add(progresses[i]);           
+        }
+        
+        int p = 0;
+        int cnt = 0;
+        int index =0;
+        while(!q.isEmpty()){
+            int top = q.poll();
+            
+            if(top >=100) {
+            	cnt++;
+            }
+            else {
+            	if(cnt!=0) {
+            		answer[index++] = cnt;
+            		cnt = 0;
+            	}
+            	q.add(top + speeds[p%speeds.length]);
+            }
+            
+        }
+        
+        
+        
+	}
+
+        
+        
+    }
+	
+

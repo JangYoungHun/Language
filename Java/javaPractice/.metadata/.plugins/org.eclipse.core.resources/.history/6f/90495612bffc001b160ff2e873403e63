@@ -1,0 +1,29 @@
+package test;
+
+public class Number1 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+	
+	  public int solution(String date, String[] requests) {
+	        int answer = 0;
+	        
+	        int limit = Integer.parseInt(date.substring(0,4));
+	        
+	        for(String str : requests) {
+	        	String datas[] = str.split(",");
+	        	 
+	        	String name = datas[0];
+	        	int ymd = Integer.parseInt(datas[1].substring(0,4));
+	        	
+	        	if((limit - ymd) > 19 ) {
+	        		answer++;
+	        	}
+	        }
+	        
+	        return answer;
+	        
+	    }
+}
