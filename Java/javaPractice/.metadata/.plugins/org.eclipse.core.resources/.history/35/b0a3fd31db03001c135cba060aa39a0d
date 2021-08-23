@@ -1,0 +1,57 @@
+package Programmers;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+public class Number_42890 {
+
+	public static void main(String[] args) {
+		
+		String relation[][] = {{"100","ryan","music","2"},{"200","apeach","math","2"},{"300","tube","computer","3"},{"400","con","computer","4"},{"500","muzi","music","3"},{"600","apeach","music","2"}};
+		System.out.println(solution(relation));
+	}
+	
+	   public static int solution(String[][] relation) {
+		   
+		  
+		   List<Integer> list = new ArrayList<Integer>();
+	
+		   int n = relation.length;
+		   int m = relation[0].length;
+		   for(int i=1; i<16; i++) {
+			   String data[] = new String[n];
+			   int index =0;
+			   for(int j=1; j < (1<<m) ; j=j<<1) {
+				  
+				   if((i&j)==j) {			
+					   for(int k =0; k<n; k++) {
+						   data[k] += relation[k][index];
+					   }			   
+				   }
+				   index++;
+			   }
+			   
+			   Set<String> set = new HashSet<String>(Arrays.asList(data));
+			   if(set.size() != data.length)
+				   continue;
+   
+			   if(list.size() ==0)
+				   list.add(i);
+			   else {
+			   for(int k =0; k<list.size(); k++){
+				   if( (i&list.get(k)) != 0) {
+					   break;
+				   }
+				   else if((i&list.get(k)) != 0 && k== list.size()-1)
+						list.add(i);
+			   }
+			   }
+		   }
+
+	        int answer = list.size();
+	        return answer;
+	    }
+}

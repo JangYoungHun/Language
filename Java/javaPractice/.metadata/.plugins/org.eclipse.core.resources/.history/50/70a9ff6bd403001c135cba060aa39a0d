@@ -1,0 +1,46 @@
+package Programmers;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+public class Number_42890 {
+
+	public static void main(String[] args) {
+		
+		String relation[][] = {{"100","ryan","music","2"},{"200","apeach","math","2"},{"300","tube","computer","3"},{"400","con","computer","4"},{"500","muzi","music","3"},{"600","apeach","music","2"}};
+		solution(relation);
+	}
+	
+	   public static int solution(String[][] relation) {
+		   
+		   String datas[][] = new String[relation[0].length][relation.length];
+		   List<Integer> list = new ArrayList<Integer>();
+		   for(int i =0; i<relation[0].length; i++) {
+			   for(int j=0; j<relation.length; j++) {
+				   datas[i][j] = relation[j][i];
+			   }
+		   }
+		   
+		   for(int i=1; i<16; i++) {
+			   
+			   for(int j=1; j < (j<< relation[0].length); j=j<<1) {
+				 
+				   if((i&j)==j) {
+					   Set<String> set = new HashSet<String>(Arrays.asList(datas[j-1]));
+					   if(set.size() != datas[j-1].length)
+						   continue;
+				   }
+			   }
+
+			   
+			   
+		   }
+		   
+
+	        int answer = 0;
+	        return answer;
+	    }
+}

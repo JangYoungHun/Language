@@ -1,5 +1,6 @@
 package Programmers;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -25,35 +26,123 @@ public class Number_72412 {
 			  data[i] = info[i].split(" ");
 		  }
 		  
-		  int result[] = new int[query.length];
-		  int index = 0;
-		  for(String str : query) {
-			  str = str.replace(" and", "");
-			  String q[] = str.split(" ");
-			  
-			  List<Integer> list = new ArrayList<Integer>();
-			  int cnt =0;
-			  for(int i =0; i<data.length; i++) {		  
-				  for(int j =0; j<5; j++) {
-					  if(j<4 && q[j].equals("-")) continue;
-					  if(j<4 && !data[i][j].equals(q[j]) ) break;
-					  if( j==4 )  {
-						  list.add(Integer.parseInt(data[i][j]));
+		  int arr[][][][] = new int[4][3][3][3];
+		  
+		  int index =0;
+		  for(int i =0; i<4; i++) {
+			  for(int j =0; j<3; j++) {
+				  for(int k =0; k<3; k++) {
+					  for(int p =0; p<3; p++) {
+						  arr[i][j][k][p] = index++;
 					  }
 				  }
-				  }
-			  
-			  Collections.sort(list);
-			  for(int i =list.size()-1; i>=0; i--) {
-				  if(list.get(i) >= Integer.parseInt(q[4])) {
-					  cnt++;
-				  }
-				  else
-					  break;
 			  }
-			  result[index++] = cnt;
+		  }
+		  
+		  List<ArrayList<Integer>> list = new ArrayList<ArrayList<Integer>>();
+		  int num = 4*3*3*3;
+		  for(int i =0; i<num; i++) {
+		  list.add(new ArrayList<Integer>());
+		  }
+		  for(int i =0; i< data.length; i++) {
+			  int index1=0;
+			  int index2=0;
+			  int index3=0;
+			  int index4=0;
+			  
+			 switch(data[i][0]) {
+				case "cpp" :  index1 = 0; break;
+				case "java" :  index1 = 1; break;
+				case "python" :  index1 = 2; break;
+			 }
+			 switch(data[i][1]) {
+				case "backend" :  index2 = 0; break;
+				case "frontend" :  index2 = 1; break;
+			 }
+			 switch(data[i][2]) {
+				case "junior" :  index3 = 0; break;
+				case "senior" :  index3 = 1; break;
+			 }
+			 switch(data[i][3]) {
+				case "chicken" :  index4 = 0; break;
+				case "pizza" :  index4 = 1; break;
+			 }
+			 
+			 int score = Integer.parseInt(data[i][4]);
+			  
+			 list.get(arr[index1][index2][index3][index4]).add(score);
+			 list.get(arr[3][index2][index3][index4]).add(score);
+			 list.get(arr[3][2][index3][index4]).add(score);
+			 list.get(arr[3][index2][2][index4]).add(score);
+			 list.get(arr[3][index2][index3][2]).add(score);
+			 list.get(arr[3][2][2][index4]).add(score);
+			 list.get(arr[3][2][index3][2]).add(score);
+			 list.get(arr[3][index2][2][2]).add(score);
+			 list.get(arr[3][2][2][2]).add(score);
+
+			 list.get(arr[index1][2][index3][index4]).add(score);
+			 list.get(arr[index1][2][2][index4]).add(score);
+			 list.get(arr[index1][2][index3][2]).add(score);
+			 list.get(arr[index1][2][2][2]).add(score);
+	
+			 list.get(arr[index1][index2][2][index4]).add(score);
+			 list.get(arr[index1][index2][2][2]).add(score);
+			 
+			 list.get(arr[index1][index2][index3][2]).add(score);
 
 		  }
+		  
+		  
+		  int result[] = new int[query.length];
+		   String q[][]  = new String[query.length][5];		   
+			  for(int i =0; i< q.length; i++) {
+				  q[i] = query[i].replace(" and", "" ).split(" ");
+			  }
+			  
+			  for(int i =0; i<q.length; i++) {
+				  int index1=0;
+				  int index2=0;
+				  int index3=0;
+				  int index4=0;
+				  
+				 switch(q[i][0]) {
+					case "cpp" :  index1 = 0; break;
+					case "java" :  index1 = 1; break;
+					case "python" :  index1 = 2; break;
+					case "-" : index1 = 3; break;
+				 }
+				 switch(q[i][1]) {
+					case "backend" :  index2 = 0; break;
+					case "frontend" :  index2 = 1; break;
+					case "-" : index2 = 2; break;
+				 }
+				 switch(q[i][2]) {
+					case "junior" :  index3 = 0; break;
+					case "senior" :  index3 = 1; break;
+					case "-" : index3 = 2; break;
+				 }
+				 switch(q[i][3]) {
+					case "chicken" :  index4 = 0; break;
+					case "pizza" :  index4 = 1; break;
+					case "-" : index4 = 2; break;
+				 }
+				 
+				 int score = Integer.parseInt(q[i][4]);
+				 ArrayList<Integer> scoreList = list.get(arr[index1][index2][index3][index4]);
+				 scoreList.sort(Collections.reverseOrder());
+				 
+				 int cnt =0;
+				 for(int j =0; j< scoreList.size(); j++) {
+					 if(scoreList.get(j) >= score) {
+						 cnt++;
+					 }
+					 else break;
+				 }
+				  result[i] = cnt;
+			  }
+			  
+
+			  
 		  return result;
 
 	    }
