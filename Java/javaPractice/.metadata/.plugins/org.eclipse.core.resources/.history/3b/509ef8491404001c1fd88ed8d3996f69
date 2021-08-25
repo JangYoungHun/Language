@@ -1,0 +1,46 @@
+package study;
+
+import java.util.Arrays;
+import java.util.List;
+
+public class Inheritance_practice {
+
+	public static void main(String[] args) {
+		
+		Child1 child = new Child1();
+		child.printFields();
+		child.printSuperFields();
+	}
+	
+	
+	static class Parent{
+		public List<Integer> list = Arrays.asList(1,2,3);
+		public int field1 =10;
+		protected int field2 = 10;
+		private int field3 = 10;
+		
+		public void printFields() {
+			field2 = 30;
+			System.out.println("field1 : " + this.field1);
+			System.out.println("field2 : " + this.field2);
+			System.out.println("field3 : " + this.field3);
+		}
+	}
+	
+	static class Child1 extends Parent{
+		public int field1 =20;
+		protected int field2 = 20;
+		private int field3 = 20;
+		
+		
+
+		void printSuperFields() {
+			System.out.println("field1 : " + super.field1);
+			System.out.println("field2 : " + super.field2);
+			System.out.println("field3 : " + super.field3);
+		}
+		
+	}
+	
+
+}

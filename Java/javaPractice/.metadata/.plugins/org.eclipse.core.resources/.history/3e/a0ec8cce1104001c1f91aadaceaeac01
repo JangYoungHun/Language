@@ -1,0 +1,40 @@
+package study;
+
+public class Inheritance_practice {
+
+	public static void main(String[] args) {
+		
+		Child child = new Child();
+		child.printFields();
+		child.printSuperFields();
+	}
+	
+	
+	static class Parent{
+		public int field1 =10;
+		protected int field2 = 10;
+		private int field3 = 10;
+	}
+	
+	static class Child extends Parent{
+		public int field1 =20;
+	//	protected int field2 = 20;
+		private int field3 = 20;
+		
+		
+		void printFields() {
+			field2 = 30;
+			System.out.println("field1 : " + field1);
+			System.out.println("field2 : " + field2);
+			System.out.println("field3 : " + field3);
+		}
+		void printSuperFields() {
+			System.out.println("field1 : " + super.field1);
+			System.out.println("field2 : " + super.field2);
+			System.out.println("field3 : " + super.field3);
+		}
+		
+	}
+	
+
+}

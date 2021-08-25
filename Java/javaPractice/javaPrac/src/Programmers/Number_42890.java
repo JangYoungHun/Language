@@ -8,12 +8,16 @@ import java.util.Set;
 
 public class Number_42890 {
 	
-	static List<ArrayList<Integer>> resultList = new ArrayList<>();
+
+	//https://programmers.co.kr/learn/courses/30/lessons/42890
+	// ÇØ°á
 	public static void main(String[] args) {
 		
 		String relation[][] = {{"100","ryan","music","2"},{"200","apeach","math","2"},{"300","tube","computer","3"},{"400","con","computer","4"},{"500","muzi","music","3"},{"600","apeach","music","2"}};
 		System.out.println(solution(relation));
 	}
+
+	static List<ArrayList<Integer>> resultList = new ArrayList<>();
 	
 	   public static int solution(String[][] relation) {
 		   

@@ -1,0 +1,44 @@
+package Programmers;
+
+import java.util.Arrays;
+
+//https://programmers.co.kr/learn/courses/30/lessons/42885
+
+public class Number_42885 {
+
+	public static void main(String[] args) {
+		
+		int nums[] = {70, 50, 80, 50};
+		solution(nums, 100);
+	}
+	
+    public static int solution(int[] people, int limit) {
+    	
+    	Arrays.sort(people);
+    	int n = people.length;
+    	boolean out[] = new boolean[n];		
+    	int answer = 0;
+  		int i =0;
+    
+    	while(i<n) {
+    		
+    		if(out[i]) {
+    			i++;
+    			continue;
+    		}
+    		int j = n-1;
+    		while(i< j && people[i] + people[j] > limit && !out[j]) {
+    			j--;
+    		}
+    		if(i<j) {
+    			out[j] = true; 		
+    		}
+    		out[i] = true; 		
+			answer++;
+			i++;
+    		
+    		
+    	}
+    	return answer;
+    }
+}
