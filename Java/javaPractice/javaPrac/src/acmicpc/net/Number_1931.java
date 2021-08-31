@@ -1,53 +1,51 @@
 package acmicpc.net;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Scanner;
 
+//https://www.acmicpc.net/problem/1931
+//ÇØ°á
 public class Number_1931 {
-	static int N;
-	static int start[];
-	static int end[];
-	static int term[];
+
 	public static void main(String[] args) {
+		
+		class Time{
+			int start;
+			int end;
+			Time(int start, int end){
+				this.start = start;
+				this.end = end;
+			}
+		}
+		
 		Scanner scanner = new Scanner(System.in);
 		
-		N = scanner.nextInt();
-		start = new int[N];
-		end = new int[N];
-		term = new int[N];
-		
-		for(int i =0; i < N; i++) {
-			
-			int num1 =scanner.nextInt();
-			int num2 =scanner.nextInt();
-			int num3 = num2-num1;
-			start[i] = num1;
-			end[i] = num2;
-			term[i] = num3;		
+		int n = scanner.nextInt();
+    	Time[] times = new Time[n];
+		for(int i =0; i < n; i++) {
+			times[i] = new Time(scanner.nextInt(), scanner.nextInt());
 		}
-		 System.out.println(search());
 
-		}
-	
-	static int search() {	
-		int count = 0;
-		for(int i=0; i<N; i++ ) {
-			int cnt = search(i, 0);		
-			cnt = Math.max(count, cnt);
-			count = cnt;		
+		Arrays.sort(times, new Comparator<Time>() {
+			public int compare(Time o1, Time o2) {
+				if(o1.end==o2.end)
+					return o1.start-o2.start;
+				
+				return o1.end-o2.end;
+			};
+		});
+		
+		int cur = times[0].end;
+		int cnt =1;
+		
+		for(int i =1; i<n; i++) {
+			if(cur <= times[i].start) {
+				cnt++;
+				cur = times[i].end;
+			}
 		}
 		
-		return count;
+		System.out.println(cnt);	
 	}
-	
-	
-	static int search(int sTime, int count) {
-		
-		int cnt = count;
-		
-		for(int i=0; i<N; i++ ) {
-			if(start[i] == sTime) {
-				cnt =Math.max(search(end[i], count++), cnt) ;
-			}			
-	      }
-		return count;			
-}
+
 }
