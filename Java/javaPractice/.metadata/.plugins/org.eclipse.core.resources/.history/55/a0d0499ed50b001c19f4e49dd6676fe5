@@ -1,0 +1,82 @@
+package acmicpc.net;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOError;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.stream.Stream;
+
+//https://www.acmicpc.net/problem/1005
+//시간초과 
+//DP로 풀어야함!
+//미해결
+public class Number_1005 {
+	static int dp[];
+	static ArrayList<ArrayList<Integer>> list;
+	static int times[] ;
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+	
+		Scanner sc = new Scanner(System.in);
+		
+		int t = Integer.parseInt(br.readLine());
+		
+		for(int i=0; i<t; i++) {
+			String strs[] = br.readLine().split(" ");
+			int n =  Integer.parseInt(strs[0]);
+			int k=  Integer.parseInt(strs[1]);
+			dp = new int[1001];
+			times = new int[n+1];
+			
+			int nums[] =Stream.of(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
+			for(int j =1; j<nums.length; j++) {
+				times[j] = nums[j-1];
+			}
+			
+			list = new ArrayList<ArrayList<Integer>>();
+			
+			for(int j =0; j<n+1; j++) {
+				list.add(new ArrayList<Integer>());
+			}
+			for(int j =0; j<k; j++) {
+				int num1 = sc.nextInt();
+				int num2 = sc.nextInt();
+				list.get(num2).add(num1);
+			}		
+			
+			int w = sc.nextInt();
+			int result = recur(w);
+			System.out.println(result);
+		}
+		
+
+		bw.flush();
+		bw.close();
+		br.close();
+
+	}
+
+	static int recur(int w) {
+		
+		int max = Integer.MIN_VALUE;
+		
+		if(list.get(w).size() == 0)
+			return times[w];
+	
+		if(dp[w] !=0)
+			return dp[w];
+		
+		for(int i =0; i<list.get(w).size(); i++) {
+			int index = list.get(w).get(i);
+			max = Math.max(max, recur(index));
+		}
+		
+		return dp[w] = times[w]+max;
+	}
+	
+}
