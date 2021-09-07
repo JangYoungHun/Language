@@ -7,6 +7,9 @@ public class Factorial_Format {
 
 	}
 	
+	//factorial은 반복문이 더빠르다 
+	
+	//재귀
 	static int factorial(int n) {
 		if(n==1)
 			return 1;
