@@ -26,7 +26,7 @@ public class Server {
 			
 			dataInputStream = new DataInputStream(client.getInputStream());
 			dataOutputStream = new DataOutputStream(client.getOutputStream());
-			
+
 			
 			while(client !=null) {
 			String readData =dataInputStream.readUTF();
