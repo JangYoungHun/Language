@@ -5,15 +5,31 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class CommandThread extends Thread {
-
+	
+	private static CommandThread instance;
+	private boolean close = false;
+	
+	private CommandThread() {
+	}
+	
+	void closeThread() {
+		close = true;
+	}
+	
+	static CommandThread getInstance() {
+		if(instance ==null)
+			return instance = new CommandThread();
+		return instance;
+	}
+	
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-	boolean closeServer = false;
+
 
 	@Override
 	public void run() {
 
 			try {
-				while (!closeServer) {
+				while (!close) {
 				String command = br.readLine();
 				if(command != null && !command.equals("")) {
 				switch (command) {
@@ -21,7 +37,7 @@ public class CommandThread extends Thread {
 				case "closeServer": 
 				case "exit" :
 				case "close": {
-					closeServer = true;
+					close = true;
 					Server.closeServer();				
 				}
 					break;			
@@ -29,13 +45,15 @@ public class CommandThread extends Thread {
 				}
 				}
 			}				
-				br.close();
-				System.out.println("command Thread 종료");
+					
 			} catch (IOException e) {
 				e.printStackTrace();
-				System.out.println("command 에러 발생");
+				System.out.println("Command Thread ERROR 발생");
 			}
-
+			finally {
+				CloseClass.closeBufferedreader(br);
+				System.out.println("command Thread 종료");
+			}
 
 	}
 }

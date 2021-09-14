@@ -1,10 +1,12 @@
 package Server;
 
+import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 
 public class CloseClass {
@@ -59,11 +61,49 @@ public class CloseClass {
 	static void closeThreadPool(ExecutorService threadPool) {	
 		if(threadPool != null) {
 			try {
-				System.out.println("ThreadPool 종료 . . . .");
 				threadPool.shutdownNow();
 			} catch (Exception e) {
 				e.printStackTrace();
 				System.out.println("ThreadPool 해제 중 문제 발생");
+			}
+		}
+	}
+	
+	static void closeBufferedreader(BufferedReader reader) {	
+		if(reader != null) {
+			try {
+				reader.close();
+
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("Bufferedreader 해제 중 문제 발생");
+			}
+		}
+	}
+	
+	static void closeArduinoList(List<ArduinoThread> list) {	
+		System.out.println("ArduinoList 해제 중 . . . .");
+		if(list != null) {
+			try {
+				for(int i =0; i<list.size(); i++) {				
+					list.get(i).closeThread();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("ArduinoList 해제 중 문제 발생");
+			}
+		}
+	}
+	static void closeMobileList(List<MobileThread> list) {	
+		System.out.println("MobileList 해제 중 . . . .");
+		if(list != null) {
+			try {
+				for(int i =0; i<list.size(); i++) {
+					list.get(i).closeThread();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("MobileThread 해제 중 문제 발생");
 			}
 		}
 	}

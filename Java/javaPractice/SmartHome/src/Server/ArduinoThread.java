@@ -6,8 +6,8 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
 
-class ClientThread extends Thread {
-	
+public class ArduinoThread extends Thread {
+
 	Socket client = null;
 	// input port
 	DataInputStream dataInputStream;
@@ -16,9 +16,15 @@ class ClientThread extends Thread {
 	String clientIp;
 	long preTime ;
 	long connectionCheckInterval = 5000;
-	public ClientThread(Socket socket) {
+	boolean close = false;
+
+	public ArduinoThread(Socket socket) {
 		this.client = socket;
 	} 
+
+	void closeThread() {
+		this.close = true;
+	}
 	
 	void init() {
 		try {		
@@ -31,43 +37,61 @@ class ClientThread extends Thread {
 		}
 	}
 	
+	String readData() {
+		try {
+		byte[] buffer = new byte[20];
+		dataInputStream.read(buffer);
+		String recv = new String(buffer);
+		 return recv;
+		}
+		catch (Exception e) {
+			System.out.println(clientIp + "Data Read Exception");
+			return "";
+		}
+	}
+	
+	void  sendData(String data) throws Exception {
+		dataOutputStream.write(data.getBytes());
+	}
+	
+	void checkConnection() throws Exception {
+		//System.out.println(clientIp + " : 아두이노 check 전송");
+		dataOutputStream.write("ck".getBytes());
+		preTime = System.currentTimeMillis();
+}
+
+
+	
 	@Override
 	public void run() {
 		try {
 			init();
 			
-			while (client != null) {
-				
+			while (client != null && !close) {			
 				if (dataInputStream.available() > 0) {					
-					byte[] buffer = new byte[20];
-					dataInputStream.read(buffer);
-					 String recv = new String(buffer);
-					 if(!recv.equals("check"))
-						System.out.println(new String(buffer));
-					// byte readData =dataInputStream.readByte();
-					// System.out.print((char)(readData));	
-					 preTime = System.currentTimeMillis() ;
-				}
+					System.out.println(readData());
+					preTime = System.currentTimeMillis();
+				}		
 				else {
 				if((System.currentTimeMillis() - preTime) >connectionCheckInterval) {
-					try {
-						dataOutputStream.write("check".getBytes());
-						preTime = System.currentTimeMillis() ;
+					try {				
+						checkConnection(); 
 					}catch (Exception e) {
-						System.out.println(clientIp + " : 소켓 종료");
+						
 						break;
 					}
 				}
 				}
 			}
+			
 		} catch (Exception e) {
-			System.out.println(clientIp +" Thread 종료");
+			 
 		}
 		finally {
+			    System.out.println(clientIp +" : 아두이노 소켓 종료");
 				CloseClass.closeSocket(client);
 				CloseClass.closeInputStream(dataInputStream);
 				CloseClass.closeOutStream(dataOutputStream);
 		}
 	}
-
 }
