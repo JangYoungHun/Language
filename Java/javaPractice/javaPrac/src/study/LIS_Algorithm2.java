@@ -3,7 +3,7 @@ package study;
 import java.util.ArrayList;
 import java.util.List;
 
-//완전탑색 O(N^2)
+
 public class LIS_Algorithm2 {
 
 	public static void main(String[] args) {
@@ -26,6 +26,9 @@ public class LIS_Algorithm2 {
 			}
 				
 		}
+		
+		System.out.println(list.toString());
+		
 }
 	
 	static int binarySearch(int left, int right, int num, List<Integer> list) {
