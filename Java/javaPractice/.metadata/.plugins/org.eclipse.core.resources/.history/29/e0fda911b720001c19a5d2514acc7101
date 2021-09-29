@@ -1,0 +1,11 @@
+package acmicpc.net;
+
+//https://www.acmicpc.net/problem/1766
+public class Number_1766 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

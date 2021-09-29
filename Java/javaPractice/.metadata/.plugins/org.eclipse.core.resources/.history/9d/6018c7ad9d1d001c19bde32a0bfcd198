@@ -1,0 +1,46 @@
+package study;
+
+public class Kruskal_Algorithm {
+
+	static class Node {
+		int num1;
+		int num2;
+		int distance;
+
+		Node(int num1, int num2, int distance) {
+			this.num1 = num1;
+			this.num2 = num2;
+			this.distance = distance;
+		}
+	}
+
+	public static void main(String[] args) {
+
+	}
+
+	static int getParent(int p[], int node1) {
+		if (p[node1] == node1)
+			return node1;
+
+		return getParent(p, p[node1]);
+	}
+
+	static void union(int p[], int node1, int node2) {
+
+		int parent1 = getParent(p, node1);
+		int parent2 = getParent(p, node2);
+
+		if (parent1 < parent2) {
+			p[node2] = parent1;
+		} else
+			p[node1] = parent2;
+	}
+
+	static boolean isUnion(int p[], int node1, int node2) {
+		if (getParent(p, node1) == getParent(p, node2))
+			return true;
+
+		return false;
+	}
+
+}

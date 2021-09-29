@@ -1,0 +1,24 @@
+package acmicpc.net;
+
+public class Number_1922 {
+
+	static class Edge {
+
+		int node1;
+		int node2;
+		int dis;
+
+		public Edge(int node1, int node2, int dis) {
+			this.node1 = node1;
+			this.node2 = node2;
+			this.dis = dis;
+		}
+
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

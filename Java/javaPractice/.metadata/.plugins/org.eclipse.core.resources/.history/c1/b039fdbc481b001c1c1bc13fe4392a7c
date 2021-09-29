@@ -1,0 +1,47 @@
+package Programmers;
+
+//https://programmers.co.kr/learn/courses/30/lessons/77885
+public class Number_77885 {
+
+	public static void main(String[] args) {
+		long[] numbers = {2,7};
+		solution(numbers) ;
+	}
+	
+    public static  long[] solution(long[] numbers) {
+        long[] answer = new long[numbers.length];
+        int index = 0;
+        for(long i : numbers) {    	
+        	long num = i+1;
+    		
+        	String str = Long.toBinaryString(i);
+        	
+
+        	while(true) {   
+        		int cnt = 0;
+        		int dif = 0;
+        		String str2 = Long.toBinaryString(num);
+        		
+        		if(str.length() != str2.length()) {
+        			dif = str2.length()-str.length();
+        			cnt += dif;
+        		}
+      		
+        		for(int j=str.length()-1; j>=0; j--) {
+        			if(str.charAt(j) != str2.charAt(j+dif))
+        				cnt++;
+        		}
+        		if(cnt <=2) {
+        			answer[index++] = num;
+        			break;
+        		}
+        			
+        		
+        		num++;
+        	}
+        	
+        }
+        
+        return answer;
+    }
+}
