@@ -26,6 +26,9 @@ public class Number_1753{
 			this.destination = destination;
 			this.distance = distance;
 		}
+		public Bridge(int i, int j, int distance2) {
+			// TODO Auto-generated constructor stub
+		}
 		@Override
 		public int compareTo(Bridge o) {
 			

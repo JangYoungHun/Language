@@ -2,9 +2,6 @@ package Format;
 
 public class Position_Node {
 
-	
-	
-	
 	static class Node{
 		
 		int x;
@@ -15,10 +12,5 @@ public class Position_Node {
 			this.y=y;
 		}
 	}
-	
-	
-	
-	
-	
-	
+
 }
