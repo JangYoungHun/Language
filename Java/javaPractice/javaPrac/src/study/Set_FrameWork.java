@@ -1,4 +1,4 @@
-package framework;
+package study;
 
 import java.util.HashSet;
 import java.util.Iterator;
