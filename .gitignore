@@ -207,6 +207,8 @@ fabric.properties
 hs_err_pid*
 
 ### Kotlin ###
+Kotlin/.idea/
+
 # Compiled class file
 
 # Log file

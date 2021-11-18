@@ -1,0 +1,47 @@
+/**
+ * You can edit, run, and share this code. 
+ * play.kotlinlang.org 
+ */
+
+fun kotlin.basic.printMessage(message:String){
+    println(message)
+}
+
+fun sum(x:Int,y:Int): Int{
+     return x+y
+}
+fun mul(x:Int, y:Int) = x*y
+
+infix fun String.add(other:String)=this+other
+
+operator fun Int.times(str:String) = str.repeat(this)
+
+operator fun String.get(range:IntRange) = substring(range)
+
+fun printMessages(vararg messages : String){
+    for(str in messages)
+    	println(str)
+}
+fun printAllWithPerfix(vararg messages:String, perfix:String){
+    for(str in messages)
+    	println("$str $perfix")
+}
+
+fun kotlin.basic.main() {
+    val map1 = mapOf(Pair("key1",1),Pair("key2",2))
+    println(map1)
+    val map2 = mapOf("key1" to 1 , "key2" to 2 )
+    println(map2)
+    
+    val str = "Hello" add "world"
+    println(str) 
+
+    println(2*"Hello")
+    val str1 = "abcdefghijklmnopqrstuvwxyz"
+    println(str1[0..10])
+    
+   printMessages("Hello ", "World " ,"Nice to Meet You")  
+ 
+     printAllWithPerfix ("Hello ", "World " ,"Nice to Meet You",perfix = " perfix")   
+    
+}
