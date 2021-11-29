@@ -1,4 +1,4 @@
-package practice;
+package acmicpc.net;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -4,7 +4,11 @@ import java.util.Scanner;
 
 public class Scanner_Format {
 
-	Scanner sc = new Scanner(System.in);
-	int n = sc.nextInt();
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+
+	}
 
 }
