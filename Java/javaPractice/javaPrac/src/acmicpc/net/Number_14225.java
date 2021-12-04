@@ -8,6 +8,7 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.stream.Stream;
 
+//ÇØ°á
 public class Number_14225 {
 	
 	static boolean num[] = new boolean[2000001];
