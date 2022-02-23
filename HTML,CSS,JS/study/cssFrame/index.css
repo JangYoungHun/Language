@@ -1,0 +1,55 @@
+body {
+  margin: 0px;
+  height: 10000px;
+}
+
+section {
+  height: 100vh;
+  background: url(https://www.starbucks.co.kr/common/img/main/fav_prod_bg_new.jpg)
+    fixed;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.banner1 h1 {
+  position: absolute;
+  font-size: 10em;
+  top: 15%;
+  left: 15%;
+  font-family: sans-serif;
+  color: white;
+  animation: slide;
+  animation-duration: 2s;
+}
+
+.photo {
+  position: absolute;
+  top: 15%;
+  left: 55%;
+  width: 1500px;
+  height: auto;
+  transform: rotate(-25deg);
+}
+
+@keyframes appear {
+  from {
+    left: -800px;
+    opacity: 0;
+  }
+
+  to {
+    left: 15%;
+    opacity: 1;
+  }
+}
+
+@keyframes disappear {
+  from {
+    left: 15%;
+    opacity: 1;
+  }
+  to {
+    left: -800px;
+    opacity: 0;
+  }
+}
