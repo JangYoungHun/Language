@@ -27,6 +27,8 @@ public class Number_16916 {
 			}
 			if(p[i] == p[j]) {
 				arr[i] = ++j;
+			}else {
+				arr[i] = 0;
 			}
 		}
 		
