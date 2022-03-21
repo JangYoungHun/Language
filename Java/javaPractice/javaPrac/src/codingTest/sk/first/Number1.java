@@ -1,4 +1,4 @@
-package codingTest;
+package codingTest.sk.first;
 
 import java.util.ArrayList;
 import java.util.Comparator;
