@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.PriorityQueue;
 import java.util.stream.Stream;
 
+//해결 완료
 public class Number_1043 {
 
 	public static void main(String[] args) throws IOException {
