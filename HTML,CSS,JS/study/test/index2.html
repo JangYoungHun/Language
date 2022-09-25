@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+
+		let reg = /^(.*?)(-복사본)?( \(([0-9]*)\))?$/;
+		let str = '디자인-복사본(15)'
+		if (reg.test(str)) {
+			console.log('matching!!')
+			console.log(RegExp.$1)
+			console.log(RegExp.$2)
+			console.log(RegExp.$3)
+			console.log(RegExp.$4)
+			if (RegExp.$3){
+				console.log('s3 true')
+			} else {
+				console.log('s3 false')
+			}
+			
+		}
+
+	</script>
+</body>
+</html>

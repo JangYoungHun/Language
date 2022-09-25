@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+
+	<textarea name="" id="textarea" cols="30" rows="10"></textarea>
+	<img id="img" alt="">
+	<script>
+		fetch("http://localhost:8080/download")
+		.then(res => res.blob())
+		.then(blob => {
+			 console.log(blob)
+			 const url = URL.createObjectURL(blob)
+			 const down = document.createElement('a');
+			 down.setAttribute('href', url)
+			 down.setAttribute('download', "test.jpg")
+			 down.click()
+			})
+	</script>
+</body>
+</html>

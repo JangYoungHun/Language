@@ -1,7 +1,12 @@
-/bin/
+bin/
 
-/.settings/
+.settings/
 
-/.classpath
+.classpath
 
-/.project
+.project
+
+src/kakao_blind_20220924/
+
+src/codingTest/
+
